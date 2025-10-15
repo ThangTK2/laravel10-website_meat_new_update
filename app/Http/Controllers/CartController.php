@@ -13,11 +13,11 @@ class CartController extends Controller
         return view('home.cart', compact('carts'));
     }
 
-    public function add(Product $product, Request $request) {  //$product: là tham số route trên đường dẫn bên web.php(line 58) được truyền vào phương thức thông qua đường dẫn URL, có thể truy cập thông tin của sản phẩm từ model Product mà không cần phải truy vấn lại từ cơ sở dữ liệu.
+    public function add(Product $product, Request $request) { 
         $quantity = $request->quantity ? floor($request->quantity) : 1;
         $cartExits = Cart::where(['customer_id' => auth('cus')->id(), 'product_id' => $product->id])->first();
         if ($cartExits) {
-            Cart::where(['customer_id' => auth('cus')->id(), 'product_id' => $product->id])->increment('quantity', $quantity); //'quantity' tên field csdl
+            Cart::where(['customer_id' => auth('cus')->id(), 'product_id' => $product->id])->increment('quantity', $quantity);
             return redirect()->route('cart.index')->with('success', 'Cập nhật giỏ hàng thành công');
         } else {
             $data = [
@@ -37,7 +37,7 @@ class CartController extends Controller
         $quantity = $request->quantity ? floor($request->quantity) : 1;
         $cartExits = Cart::where(['customer_id' => auth('cus')->id(), 'product_id' => $product->id])->first();
         if ($cartExits) {
-            Cart::where(['customer_id' => auth('cus')->id(), 'product_id' => $product->id])->update(['quantity'=> $quantity]); //'quantity' tên input bên view
+            Cart::where(['customer_id' => auth('cus')->id(), 'product_id' => $product->id])->update(['quantity'=> $quantity]);
             return redirect()->route('cart.index')->with('success', 'Bạn đã cập nhật giỏ hàng thành công');
         }
         return redirect()->back()->with('error', 'Bạn đã cập nhật giỏ hàng không thành công');

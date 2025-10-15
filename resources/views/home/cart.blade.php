@@ -40,7 +40,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($carts as $item) {{-- carts: bên AppServiceProvider.php || prod: bên function Cart.php --}}
+                        @foreach ($carts as $item) <!--carts: bên AppServiceProvider.php || prod: bên function Cart.php -->
                             <tr>
                                 <td scope="row">{{ $loop->index + 1 }}</td>
                                 <td>{{ $item->prod->name }}</td>

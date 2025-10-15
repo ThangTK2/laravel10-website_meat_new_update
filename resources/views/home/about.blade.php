@@ -1,5 +1,5 @@
 @extends('master.main')
-@section('title', 'About Us')
+@section('title', 'Về Chúng Tôi')
 @section('main')
     <!-- main-area -->
     <main>
@@ -10,10 +10,10 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="breadcrumb-content">
-                            <h2 class="title">About us</h2>
+                            <h2 class="title">Về Chúng Tôi</h2>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Trang Chủ</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">about us</li>
                                 </ol>
                             </nav>
@@ -30,8 +30,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-title text-center mb-50">
-                            <span class="sub-title">About Bemet</span>
-                            <h2 class="title">Why Choose Our Shop</h2>
+                            <span class="sub-title">Về Bemet</span>
                             <div class="title-shape" data-background="uploads/images/title_shape.png"></div>
                         </div>
                     </div>
@@ -50,9 +49,9 @@
                                 </div>
                                 <div class="choose-content">
                                     <div class="line" data-background="uploads/images/line.png"></div>
-                                    <h2 class="title">100% Organic Meat</h2>
-                                    <p>We provide well shaped fresh and the organic meat from our farm very hygienic well.</p>
-                                    <a href="services-details.html" class="link-btn">learn more</a>
+                                    <h2 class="title">Thịt hữu cơ 100%</h2>
+                                    <p>Chúng tôi cung cấp thịt tươi ngon và thịt hữu cơ từ trang trại của chúng tôi rất hợp vệ sinh.</p>
+                                    <a href="{{ route('home.about-detail') }}" class="link-btn">Xem thêm</a>
                                 </div>
                             </div>
                         </div>
@@ -68,9 +67,9 @@
                                 </div>
                                 <div class="choose-content">
                                     <div class="line" data-background="uploads/images/line.png"></div>
-                                    <h2 class="title">Beef Tenderloin</h2>
-                                    <p>We provide well shaped fresh and the organic meat from our farm very hygienic well.</p>
-                                    <a href="services-details.html" class="link-btn">learn more</a>
+                                    <h2 class="title">Thăn bò</h2>
+                                    <p>Chúng tôi cung cấp thịt tươi ngon và thịt hữu cơ từ trang trại của chúng tôi rất hợp vệ sinh.</p>
+                                    <a href=""{{ route('home.about-detail') }}"" class="link-btn">Xem thêm</a>
                                 </div>
                             </div>
                         </div>
@@ -86,9 +85,9 @@
                                 </div>
                                 <div class="choose-content">
                                     <div class="line" data-background="uploads/images/line.png"></div>
-                                    <h2 class="title">Chuck Roast</h2>
-                                    <p>We provide well shaped fresh and the organic meat from our farm very hygienic well.</p>
-                                    <a href="services-details.html" class="link-btn">learn more</a>
+                                    <h2 class="title">Chuck nướng</h2>
+                                    <p>Chúng tôi cung cấp thịt tươi ngon và thịt hữu cơ từ trang trại của chúng tôi rất hợp vệ sinh.</p>
+                                    <a href=""{{ route('home.about-detail') }}"" class="link-btn">Xem thêm</a>
                                 </div>
                             </div>
                         </div>
@@ -105,11 +104,9 @@
                     <div class="col-lg-4">
                         <div class="team-content-wrap">
                             <div class="section-title white-title mb-50">
-                                <span class="sub-title">Meet Our Team</span>
-                                <h2 class="title">Our CREATIVE Team</h2>
+                                <span class="sub-title">Đội ngũ sáng tạo của chúng tôi</span>
                             </div>
-                            <p>BUY SMOKEY GRILLED meats and CHICKEN <span>GET catling</span> FREE</p>
-                            <a href="shop.html" class="btn">Shop Now</a>
+                            <a href="{{ route('home.index') }}" class="btn">Mua ngay</a>
                         </div>
                     </div>
                     <div class="col-lg-8">
@@ -124,7 +121,7 @@
                                         <div class="team-content">
                                             <div class="line" data-background="uploads/images/line.png"></div>
                                             <h4 class="title"><a href="team-details.html">Alaxzender pilot</a></h4>
-                                            <span>stack expert</span>
+                                            <span>Đầu bếp</span>
                                         </div>
                                     </div>
                                 </div>
@@ -137,7 +134,7 @@
                                         <div class="team-content">
                                             <div class="line" data-background="uploads/images/line.png"></div>
                                             <h4 class="title"><a href="team-details.html">Starlee jonson</a></h4>
-                                            <span>stack expert</span>
+                                            <span>Bếp trưởng</span>
                                         </div>
                                     </div>
                                 </div>
@@ -150,7 +147,7 @@
                                         <div class="team-content">
                                             <div class="line" data-background="uploads/images/line.png"></div>
                                             <h4 class="title"><a href="team-details.html">Alaxzender pilot</a></h4>
-                                            <span>stack expert</span>
+                                            <span>Đầu bếp</span>
                                         </div>
                                     </div>
                                 </div>
@@ -176,44 +173,44 @@
                     <div class="col-lg-6">
                         <div class="faq-content">
                             <div class="section-title mb-60">
-                                <span class="sub-title">Customer Quotes</span>
-                                <h2 class="title">Frequently <span>Asked</span> Questions.</h2>
+                                <span class="sub-title">Phản hồi của khách hàng</span>
+                                <h2 class="title">Các câu hỏi  <span>thường gặp.</span></h2>
                             </div>
                             <div class="faq-wrap">
                                 <div class="accordion" id="accordionExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                hamburg Meat is animal flesh food.
+                                                hamburg Thịt là thức ăn thịt động vật.
                                             </button>
                                         </h2>
                                         <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                                             <div class="accordion-body">
-                                                <p>Meat provide well shaped fresh and the organic meat well animals is Humans have hunted schistoric times</p>
+                                                <p>Thịt cung cấp hình dạng tốt tươi và thịt hữu cơ động vật tốt là Con người đã săn bắn thời kỳ schistoric</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                Revolution allowed the of animals
+                                                Cách mạng cho phép động vật
                                             </button>
                                         </h2>
                                         <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                             <div class="accordion-body">
-                                                <p>Meat provide well shaped fresh and the organic meat well animals is Humans have hunted schistoric times</p>
+                                                <p>Thịt cung cấp hình dạng tốt tươi và thịt hữu cơ động vật tốt là Con người đã săn bắn thời kỳ schistoric</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                Meat is animal flesh food.
+                                                Thịt là thức ăn thịt động vật.
                                             </button>
                                         </h2>
                                         <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                             <div class="accordion-body">
-                                                <p>Meat provide well shaped fresh and the organic meat well animals is Humans have hunted schistoric times</p>
+                                                <p>Thịt cung cấp hình dạng tốt tươi và thịt hữu cơ động vật tốt là Con người đã săn bắn thời kỳ schistoric</p>
                                             </div>
                                         </div>
                                     </div>

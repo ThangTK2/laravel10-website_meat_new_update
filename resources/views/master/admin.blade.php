@@ -132,6 +132,18 @@
               <li><a href="{{ route('order.index') }}?status=3"><i class="fa fa-circle-o"></i> Đã hủy</a></li>
             </ul>
         </li>
+        <li class="treeview">
+            <a href="#">
+              <i class="fa fa-image"></i> <span>Slider</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="{{ route('sliders.index') }}"><i class="fa fa-circle-o"></i> Danh sách</a></li>
+              <li><a href="{{ route('sliders.create') }}"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
+            </ul>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

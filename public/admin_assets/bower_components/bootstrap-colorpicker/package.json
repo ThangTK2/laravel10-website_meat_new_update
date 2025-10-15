@@ -24,6 +24,7 @@
     }
   ],
   "dependencies": {
+    "bootstrap-colorpicker": "file:",
     "jquery": ">=1.10"
   },
   "scripts": {

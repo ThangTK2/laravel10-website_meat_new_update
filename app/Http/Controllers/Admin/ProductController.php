@@ -83,8 +83,7 @@ class ProductController extends Controller
         $data = $request->only('name', 'price', 'sale_price', 'status', 'description', 'category_id');
         $img_name = $product->image;
         $image_path = public_path('uploads/product').'/'.$img_name; //public_path: trả về đường dẫn đến thư mục public
-        if($request->has('image')){ //kiểm tra xem có trường nào trong request có tên là 'image' không neu co thi edit
-            // Kiểm tra và xóa file ảnh chính cũ
+        if($request->has('image')){ 
             if (file_exists($image_path)) {
                 unlink($image_path);
             }
@@ -93,9 +92,7 @@ class ProductController extends Controller
             $data['image'] = $image_name;
         }
 
-        // Cập nhật thông tin sản phẩm với dữ liệu mới
         if ($product->update($data)) {
-            // Kiểm tra nếu có ảnh phụ
             if($request->has('images')){
                 // Xóa ảnh phụ cũ
                 if ($product->images->count() > 0) {

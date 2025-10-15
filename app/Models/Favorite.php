@@ -15,6 +15,6 @@ class Favorite extends Model
 
     // hasOne: mqh 1-1
     public function prod() {
-        return $this->hasOne(Product::class, 'id', 'product_id'); //$this là model Favorite
+        return $this->hasOne(Product::class, 'id', 'product_id');
     }
 }

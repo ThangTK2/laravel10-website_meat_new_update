@@ -80,12 +80,4 @@ class CategoryController extends Controller
 
         return redirect()->route('category.index')->with('success', 'Xóa danh mục thành công');
     }
-
-    public function search(Request $request)
-    {
-        $keyword = $request->input('keyword');
-        // Thực hiện truy vấn để tìm kiếm các danh mục có tên chứa từ khóa
-        $categories = Category::where('name', 'LIKE', "%$keyword%")->get();
-        return view('admin.category.index', compact('categories'));
-    }
 }

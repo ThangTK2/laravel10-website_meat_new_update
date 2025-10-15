@@ -2,20 +2,14 @@
 @section('title', 'Admin | Danh Sách Danh Mục')
 @section('main')
 
-<form action="" class="form-inline">
-    <div class="form-group">
-        <input type="text" name="keyword" class="form-control" placeholder="Tìm kiếm...">
-        <button type="submit" class="btn btn-danger"><i class="fa fa-search"></i></button>
-    </div>
-    <a href="{{ route('category.create') }}" class="btn btn-success float-right"><i class="fa fa-plus"></i></a>
-</form>
-
-
-<br>
-
-@if ($categories->isEmpty())
-    <p>Không tìm thấy danh mục nào.</p>;
-@else
+    <form action="" class="form-inline">
+        <div class="form-group">
+            <input type="text" name="keyword" class="form-control" placeholder="Tìm kiếm...">
+            <button type="submit" class="btn btn-danger"><i class="fa fa-search"></i></button>
+        </div>
+        <a href="{{ route('category.create') }}" class="btn btn-success float-right"><i class="fa fa-plus"></i></a>
+    </form>
+    <br>
     <table class="table table-striped table-inverse table-responsive table-bordered text-center">
         <thead class="thead-inverse">
             <tr>
@@ -43,6 +37,5 @@
             @endforeach
         </tbody>
     </table>
-@endif
-{{ $categories->appends(request()->all())->links() }}
+    {{ $categories->appends(request()->all())->links() }}
 @endsection

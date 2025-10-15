@@ -45,17 +45,19 @@ class Customer extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    // hasMany: mqh 1-n
-    public function favorites() {
+
+    public function favorites()
+    {
         return $this->hasMany(Favorite::class, 'customer_id', 'id'); //$this là model Customer
     }
 
-    public function carts() {
+    public function carts()
+    {
         return $this->hasMany(Cart::class, 'customer_id', 'id');
     }
 
-    public function orders() {
+    public function orders()
+    {
         return $this->hasMany(Order::class, 'customer_id', 'id')->orderBy('id', 'desc');
     }
 }
-

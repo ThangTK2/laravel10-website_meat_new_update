@@ -128,22 +128,21 @@
 
         function showMultipleImage(input) {
             if (input.files && input.files.length) {
-                var _html = ``
                 for (let i = 0; i < input.files.length; i++) {
                     var file = input.files[i];
                     var reader = new FileReader();
                     reader.onload = function (e) {
-                        _html += `
-                            <div class="">
-                                <img src="{e.target.result} đ" alt="Hình ảnh" width="50%">
+                        $('#show_multiple_img').append(`
+                            <div class="col-md-3">
+                                <img class="thumbnail" src="${e.target.result}" alt="Hình ảnh" width="50%">
                             </div>
-                        `
-                        $('#show_multiple_img').html(_html);
+                        `);
                     };
                     reader.readAsDataURL(file);
                 }
             }
         }
+
 
     </script>
 @endsection

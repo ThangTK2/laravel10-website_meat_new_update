@@ -1,5 +1,5 @@
 @extends('master.main')
-@section('titile', 'Trang chủ')
+@section('title', 'Trang chủ')
 @section('main')
     <!-- main-area -->
     <main>
@@ -14,7 +14,7 @@
                         <div class="col-lg-12">
                             <div class="banner-content">
                                 <h1 class="title wow fadeInUp" data-wow-delay=".2s">{{ $topBanner->name }}</h1>
-                                <span class="sub-title wow fadeInUp" data-wow-delay=".4s">Butcher & Meat shop</span>
+                                <span class="sub-title-1 wow fadeInUp" data-wow-delay=".4s">Cửa hàng thịt tươi sạch</span>
                                 <a href="{{ $topBanner->link }}" class="btn wow fadeInUp" data-wow-delay=".6s">Mua ngay</a>
                             </div>
                             <div class="banner-img text-center wow fadeInUp" data-wow-delay=".8s">
@@ -43,9 +43,9 @@
                                         <span style="padding-bottom: 8px"> {{ $item->cat->name }}</span>
                                         <h4 class="title"><a href="{{ route('home.product', $item->id) }}">{{ $item->name }}</a></h4>
                                         <div style="display: flex; align-items: center;">
-                                            @if ($item->sale_price > 0) {{-- nếu có khuyến mãi --}}
-                                            <div style="color: #7F6F6C; padding-right: 8px"><span><s>{{ number_format($item->price) }} đ</s></span></div>
-                                            <span class="price">{{ number_format($item->sale_price) }} đ</span>
+                                            @if ($item->sale_price > 0) <!-- nếu có khuyến mãi -->
+                                                <div style="color: #7F6F6C; padding-right: 8px"><span><s>{{ number_format($item->price) }} đ</s></span></div>
+                                                <span class="price">{{ number_format($item->sale_price) }} đ</span>
                                             @else
                                                 <span class="price">{{ number_format($item->price) }} đ</span>
                                             @endif
@@ -145,7 +145,7 @@
         <!-- product-area-end -->
 
         <!-- gallery-area -->
-        <div class="gallery-area gallery-bg" data-background="uploads/gallery/{{ $galleries[0]->image }}">
+        <div class="gallery-area gallery-bg" data-background="uploads/bg/product_bg01.jpg">
             <div class="container">
                 <div class="gallery-item-wrap">
                     <div class="row justify-content-center">
@@ -153,7 +153,7 @@
                             <div class="gallery-active">
                                 @foreach ($galleries as $ga)
                                     <div class="gallery-item">
-                                        <a href="uploads/gallery/{{ $ga->image }}" class="popup-image"><img src="uploads/gallery/gallery_img01.png" alt=""></a>
+                                        <a href="uploads/gallery/{{ $ga->image }}" class="popup-image"><img src="uploads/gallery/{{ $ga->image }}" alt="Image"></a>
                                     </div>
                                 @endforeach
                             </div>

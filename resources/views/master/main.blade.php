@@ -103,46 +103,43 @@
                                     </div>
                                     <div class="navbar-wrap main-menu d-none d-lg-flex">
                                         <ul class="navigation">
-                                            <li class="active" class="menu-item-has-children"><a href="{{ route('home.index') }}">Trang chủ</a>
-                                                {{-- <ul class="sub-menu">
-                                                    <li><a href="index-2.html">Home One</a></li>
-                                                    <li><a href="index-3.html">Home Two</a></li>
-                                                    <li><a href="index-4.html">Home Three</a></li>
-                                                </ul> --}}
+                                            <li class="{{ request()->routeIs('home.index') ? 'active' : '' }}">
+                                                <a href="{{ route('home.index') }}">Trang chủ</a>
                                             </li>
-                                            <li class="menu-item-has-children"><a href="#">Sản phẩm</a>
+
+                                            <li class="{{ request()->routeIs('home.product_all', 'home.category*') ? 'active' : '' }}">
+                                                <a href="{{ route('home.product_all') }}">Sản phẩm</a>
                                                 <ul class="sub-menu">
-                                                    @foreach ($cats_home as $item)  {{-- cats_home: bên AppServiceProvider.php --}}
+                                                    @foreach ($cats_home as $item)
                                                         <li><a href="{{ route('home.category', $item->id) }}">{{ $item->name }}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </li>
-                                            <li ><a href="{{ route('home.about') }}">Về chúng tôi</a></li>
-                                            <li class="menu-item-has-children"><a href="#">BLOG</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="blog.html">Our Blog</a></li>
-                                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                                </ul>
+
+                                            <li class="{{ request()->routeIs('home.about') ? 'active' : '' }}">
+                                                <a href="{{ route('home.about') }}">Về chúng tôi</a>
                                             </li>
-                                            <li class="menu-item-has-children"><a href="#">PAGES</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="services.html">Services Page</a></li>
-                                                    <li><a href="services-details.html">Services Details</a></li>
-                                                    <li><a href="team-details.html">Team Details</a></li>
-                                                </ul>
+
+                                            <li class="{{ request()->routeIs('home.page') ? 'active' : '' }}">
+                                                <a href="{{ route('home.page') }}">Pages</a>
                                             </li>
-                                            <li><a href="contact.html">Liên hệ</a></li>
+
+                                            <li class="{{ request()->routeIs('home.contact') ? 'active' : '' }}">
+                                                <a href="{{ route('home.contact') }}">Liên hệ</a>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="header-action d-none d-md-block">
                                         <ul class="list-wrap">
-                                            <li class="header-search">
-                                                <a href="#"><i class="flaticon-search"></i></a>
-                                            </li>
+                                            <form action="" class="form-inline">
+                                                <li class="header-search">
+                                                    <a href="#"><i class="flaticon-search"></i></a>
+                                                </li>
+                                            </form>
                                             <li class="header-shop-cart">
                                                 <a href="{{ route('cart.index') }}">
                                                     <i class="flaticon-shopping-basket"></i>
-                                                    <span>{{ $carts->sum('quantity') }}</span>  {{-- carts: bên AppServiceProvider.php --}}
+                                                    <span>{{ $carts->sum('quantity') }}</span>
                                                 </a>
                                             </li>
                                             <li class="header-btn"><a href="tel:0123456789" class="btn">0 929 029 035</a></li>
@@ -159,7 +156,6 @@
                                         <a href="index-2.html"><img src="uploads/logo/logo.png" alt="Logo"></a>
                                     </div>
                                     <div class="menu-outer">
-                                        <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
                                     </div>
                                     <div class="social-links">
                                         <ul class="clearfix list-wrap">
@@ -187,8 +183,8 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="search-form">
-                                    <form action="#">
-                                        <input type="text" placeholder="Enter your keyword...">
+                                    <form action="">
+                                        <input type="text" name="keyword" placeholder="Enter your keyword...">
                                         <button class="search-btn"><i class="flaticon-search"></i></button>
                                     </form>
                                 </div>
@@ -220,7 +216,7 @@
                                 <li>
                                     <div class="footer-social">
                                         <ul class="list-wrap">
-                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="https://www.facebook.com/Thang.TK2"><i class="fab fa-facebook-f"></i></a></li>
                                             <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                             <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
                                             <li><a href="#"><i class="fab fa-instagram"></i></a></li>
@@ -229,9 +225,9 @@
                                 </li>
                                 <li class="order-lg-3">
                                     <div class="footer-newsletter">
-                                        <h4 class="title">Our Newsletter</h4>
+                                        <h4 class="title">BẢN TIN CỦA CHÚNG TÔI</h4>
                                         <form action="#">
-                                            <input type="email" placeholder="Enter your email...">
+                                            <input type="email" placeholder="Email của bạn...">
                                             <button type="submit">subscribe</button>
                                         </form>
                                     </div>
@@ -245,7 +241,7 @@
                         <div class="row">
                             <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="footer-widget">
-                                    <h4 class="fw-title">about andspa</h4>
+                                    <h4 class="fw-title">giới thiệu</h4>
                                     <div class="footer-contact">
                                         <ul class="list-wrap">
                                             <li>Da Nang, Viet Nam</li>
@@ -253,43 +249,40 @@
                                             <li><a href="mailto:info@bemet.com">nht1072@gmail.com</a></li>
                                         </ul>
                                     </div>
-                                    <div class="footer-content">
-                                        <h4 class="title">Open Hours</h4>
-                                        <p>Sunday to Friday <span>06:00-18:00</span></p>
-                                    </div>
+                                    <!-- <div class="footer-content">
+                                        <h4 class="title">Giờ mở cửa</h4>
+                                        <p>Thứ 2 đến Chủ Nhật <span>08:00-18:00</span></p>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="footer-widget">
-                                    <h4 class="fw-title">Important Links</h4>
+                                    <h4 class="fw-title">LIÊN KẾT QUAN TRỌNG</h4>
                                     <div class="footer-link">
                                         <ul class="list-wrap">
-                                            <li><a href="contact.html">CURATION</a></li>
-                                            <li><a href="about.html">ABOUT US</a></li>
-                                            <li><a href="contact.html">MY ACCOUNT</a></li>
-                                            <li><a href="contact.html">CONTACT</a></li>
-                                            <li><a href="contact.html">SHIPPING & RETURNS</a></li>
+                                            <li><a href="{{ route('home.product_all') }}">Sản phẩm</a></li>
+                                            <li><a href="{{ route('home.about') }}">Về chúng tôi</a></li>
+                                            <li><a href="{{ route('home.page') }}">Pages</a></li>
+                                            <li><a href="{{ route('home.contact') }}">Liên hệ</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-6 col-sm-4">
                                 <div class="footer-widget">
-                                    <h4 class="fw-title">CATEGORIES</h4>
+                                    <h4 class="fw-title">Danh mục</h4>
                                     <div class="footer-link">
                                         <ul class="list-wrap">
-                                            <li><a href="contact.html">How to Order</a></li>
-                                            <li><a href="contact.html">Delivery Info</a></li>
-                                            <li><a href="contact.html">FAQs</a></li>
-                                            <li><a href="contact.html">Terms</a></li>
-                                            <li><a href="contact.html">Privacy Policy</a></li>
+                                            @foreach ($cats_home as $item)
+                                                <li><a href="{{ route('home.category', $item->id) }}">{{ $item->name }}</a></li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-8">
                                 <div class="footer-widget">
-                                    <h4 class="fw-title">instagram</h4>
+                                    <!-- <h4 class="fw-title">instagram</h4> -->
                                     <div class="footer-instagram">
                                         <ul class="list-wrap">
                                             <li><a href="#"><img src="uploads/images/footer_insta01.jpg" alt=""></a></li>
@@ -312,7 +305,7 @@
                         <div class="row align-items-center">
                             <div class="col-lg-6 col-md-7">
                                 <div class="copyright-text">
-                                    <p>© 2024 <a href="https://www.facebook.com/Thang.TK2">TK2-Bemet</a>, All Rights Reserved</p>
+                                    <p>© {{ date('Y') }} <a href="https://www.facebook.com/Thang.TK2">Bemet</a>, All Rights Reserved</p>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-5">
@@ -342,6 +335,7 @@
         <script src="assets/js/ajax-form.js"></script>
         <script src="assets/js/wow.min.js"></script>
         <script src="assets/js/main.js"></script>
+        
 
         @yield('js')
     </body>

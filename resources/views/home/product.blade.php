@@ -3,7 +3,6 @@
 @section('main')
     <!-- main-area -->
     <main>
-
         <!-- breadcrumb-area -->
         <section class="breadcrumb-area tg-motion-effects breadcrumb-bg" data-background="uploads/bg/breadcrumb_bg.jpg">
             <div class="container">
@@ -33,7 +32,7 @@
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane show active" id="itemOne-tab-pane" role="tabpanel" aria-labelledby="itemOne-tab" tabindex="0">
                                     <a href="uploads/product/{{ $product->image }}" class="popup-image">
-                                        <img id="big-img" src="uploads/product/{{ $product->image }}" alt="{{ $product->name }}" width="70%">
+                                        <img id="big-img" src="uploads/product/{{ $product->image }}" alt="{{ $product->name }}" width="60%">
                                     </a>
                                 </div>
                             </div>
@@ -76,7 +75,7 @@
                             @if (auth('cus')->check())
                                 <a href="{{ route('cart.add', $product->id) }}" class="buy-btn">MUA ngay</a>
                             @else
-                                <a class="buy-btn title="Add to cart" href="{{route('account.login')}}" onclick="return confirm('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng')">MUA ngay</a>
+                                <a class="buy-btn" title="Add to cart" href="{{route('account.login')}}" onclick="return confirm('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng')">MUA ngay</a>
                             @endif
                             <div class="payment-method-wrap">
                                 <span class="title">ĐẢM BẢO THANH TOÁN AN TOÀN:</span>
@@ -196,7 +195,7 @@
     <script>
         $('.thumb-img').click(function(e) {
             e.preventDefault();
-            var productPhotos = $(this).attr('src'); //$(this).attr('src') để lấy giá trị của thuộc tính "src" của phần tử được click
+            var productPhotos = $(this).attr('src');
             $('#big-img').attr('src', productPhotos);
         })
     </script>

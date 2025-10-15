@@ -9,6 +9,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Admin\OrderPdfController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,11 +26,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/about-us', [HomeController::class, 'about'])->name('home.about');
+Route::get('/about-us-detail', [HomeController::class, 'about_detail'])->name('home.about-detail');
+Route::get('/product_all', [HomeController::class, 'product_all'])->name('home.product_all');
+Route::get('/contact', [HomeController::class, 'contact'])->name('home.contact');
+Route::get('/page', [HomeController::class, 'page'])->name('home.page');
 Route::get('/category/{cat}', [HomeController::class, 'category'])->name('home.category');
 Route::get('/product/{product}', [HomeController::class, 'product'])->name('home.product');
 Route::get('/favorite/{product}', [HomeController::class, 'favorite'])->name('home.favorite');
-
-// Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 
 
 
@@ -92,6 +95,8 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth'], function () {
     Route::get('/product-delete-image/{image}', [ProductController::class, 'destroyImage'])->name('admin.product.destroyImage');
 
     Route::resource('/customers', CustomerController::class);
+
+    Route::resource('/sliders', SliderController::class);
 
     Route::get('/order', [OrderController::class, 'index'])->name('order.index');
     Route::get('/order/detail/{order}', [OrderController::class, 'show'])->name('order.show');

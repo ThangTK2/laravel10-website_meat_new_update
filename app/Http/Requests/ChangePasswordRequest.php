@@ -23,10 +23,10 @@ class ChangePasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'old_password' => ['required', function($attr, $value, $fail){ //closure
+            'old_password' => ['required', function ($attr, $value, $fail) { //closure
                 $auth = auth('cus')->user();
-                if (!Hash::check($value, $auth->password)){
-                   return $fail('Mật khẩu của bạn không đúng');
+                if (!Hash::check($value, $auth->password)) {
+                    return $fail('Mật khẩu của bạn không đúng');
                 }
             }],
             'password' => 'required|min:4',

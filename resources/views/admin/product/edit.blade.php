@@ -44,17 +44,17 @@
                     @foreach ($product->images as $img)
                         <div class="col-md-3">
                             <img class="thumbnail" src="uploads/product/{{ $img->image }}" alt="Hình ảnh" width="100%">
-                            <a onclick="return confirm('Do you want to remove this product image?')" href="{{ route('admin.product.destroyImage', $img->id) }}" style="position: absolute; top: 5px; right: 20px;"><i class="fa fa-trash"></i></a>
+                            <a onclick="return confirm('Bạn có muốn xóa hình ảnh sản phẩm này không?')" href="{{ route('admin.product.destroyImage', $img->id) }}" style="position: absolute; top: 5px; right: 20px;"><i class="fa fa-trash"></i></a>
                         </div>
                     @endforeach
                 </div>
 
-                <label>Các ảnh mới chọn sẽ thay thế ảnh cũ trước đó: </label>
+                {{-- <label>Các ảnh mới chọn sẽ thay thế ảnh cũ trước đó: </label>
                 <div class="row" id="show_multiple_img">
                     <div class="col-md-3">
                         <img class="thumbnail" src="" alt="Hình ảnh">
                     </div>
-                </div>
+                </div> --}}
             </div>
 
         </div>

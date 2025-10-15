@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminLoginRequest;
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
@@ -12,16 +13,19 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $totalCategories = Category::count();
         $totalProducts = Product::count();
         $totalOrders = Order::where('status', 2)->count();
         $totalUsers = User::count();
+        $totalSliders = Banner::count();
 
-        return view('admin.index', compact('totalProducts', 'totalCategories', 'totalOrders', 'totalUsers'));
+        return view('admin.index', compact('totalProducts', 'totalCategories', 'totalOrders', 'totalUsers', 'totalSliders'));
     }
 
-    public function login(){
+    public function login()
+    {
         // create sample data
         // User::create([
         //     'name' => 'Admin Bemet',
@@ -31,7 +35,8 @@ class AdminController extends Controller
         return view('admin.login');
     }
 
-    public function check_login(AdminLoginRequest $request){
+    public function check_login(AdminLoginRequest $request)
+    {
         $data = $request->only('email', 'password');
         $check = auth()->attempt($data);  //attempt($data): xem thông tin đăng nhập có đúng với db không.
         if ($check) {
@@ -40,7 +45,8 @@ class AdminController extends Controller
         return redirect()->back()->with('error', 'Email hoặc mật khẩu không chính xác, vui lòng thử lại');
     }
 
-    public function logout(){
+    public function logout()
+    {
         auth()->logout();
         return redirect()->route('admin.login')->with('success', 'Bạn đã đăng xuất thành công');
     }

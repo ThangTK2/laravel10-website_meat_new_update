@@ -16,7 +16,7 @@ class OrderController extends Controller
 
     public function show(Order $order){
         $auth = $order->customer;  //customer -> Order.php
-        return view('admin.order.order_detail', compact('auth', 'order'));  //order được sử dụng ở đây là biến $order
+        return view('admin.order.order_detail', compact('auth', 'order'));
     }
 
     public function update(Order $order){

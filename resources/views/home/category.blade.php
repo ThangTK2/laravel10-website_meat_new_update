@@ -77,7 +77,7 @@
                         </div>
                         <div class="col-xl-3 col-lg-4">
                             <div class="shop-sidebar">
-                                {{-- <div class="shop-widget">
+                                <div class="shop-widget">
                                     <h4 class="sw-title">FILTER BY</h4>
                                     <div class="price_filter">
                                         <div id="slider-range"></div>
@@ -90,7 +90,7 @@
                                             <button type="reset"><i class="far fa-trash-alt"></i>Clear all</button>
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
                                 <div class="shop-widget">
                                     <h4 class="sw-title">Danh mục sản phẩm</h4>
                                     <div class="shop-cat-list">
@@ -136,6 +136,6 @@
 
     </main>
     <!-- main-area-end -->
-    {{-- paginate --}}
+    <!-- paginate -->
     {{ $products->appends(request()->all())->links() }}
 @endsection

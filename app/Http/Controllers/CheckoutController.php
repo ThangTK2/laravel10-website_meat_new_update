@@ -43,14 +43,13 @@ class CheckoutController extends Controller
             foreach($auth->carts as $cart){   //carts: bên Customer.js
                 $data1[] = [
                     'order_id' => $order->id,
-                    'product_id' => $cart->product_id,
                     'price' => $cart->price,
+                    'product_id' => $cart->product_id,
                     'quantity' => $cart->quantity,
                 ];
             }
             OrderDetail::insert($data1);
 
-            // Xoá giỏ hàng sau khi tạo đơn hàng thành công
             $auth->carts()->delete();
 
             $order->token = $token;
@@ -61,7 +60,7 @@ class CheckoutController extends Controller
         return redirect()->route('home.index')->with('error', 'Đặt hàng không thành công');
     }
 
-    public function verify($token){ //$token wec.php(line 69)
+    public function verify($token){
         $order = Order::where('token', $token)->first();
         if($order){
             $order->token = null;
@@ -114,7 +113,6 @@ class CheckoutController extends Controller
         // Lấy tổng số tiền từ dữ liệu yêu cầu
         $totalMomo = $request->input('total_momo');
 
-        // Kiểm tra xem tổng số tiền có nằm trong khoảng cho phép không
         if ($totalMomo < 10000 || $totalMomo > 50000000) {
             return redirect()->back()->with('error', 'Số tiền giao dịch không hợp lệ.');
         }
@@ -170,7 +168,7 @@ class CheckoutController extends Controller
 
         if (isset($jsonResult['payUrl'])) {
             $order = new Order();
-            $order->name = $auth->name;  //auth: người dùng đăng nhập
+            $order->name = $auth->name;
             $order->email = $auth->email;
             $order->phone = $auth->phone;
             $order->address = $auth->address;

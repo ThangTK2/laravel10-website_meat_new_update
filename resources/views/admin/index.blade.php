@@ -46,5 +46,17 @@
             </div>
         </div>
     </div>
+    <div class="col-lg-3">
+        <div class="small-box bg-blue">
+            <div class="inner">
+                <h3>{{ $totalSliders ?? '0' }}</h3>
+                <p>Tổng Số Slider</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-image"></i>
+            </div>
+        </div>
+    </div>
+
 </div>
 @endsection

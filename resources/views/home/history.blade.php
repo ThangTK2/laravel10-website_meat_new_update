@@ -46,7 +46,7 @@
                                     @if ($item->status == 0)
                                         <span>Bạn chưa xác nhận đơn đặt hàng. Vui lòng kiểm tra Email để xác nhận</span>
                                     @elseif($item->status == 1)
-                                        <span>Bạn đã xác nhận đơn đặt hàng. Chúng tôi sẽ giao trong thời gian sớm nhất</span>
+                                        <span>Bạn đã xác nhận đơn đặt hàng. Chúng tôi sẽ xác nhận đơn hàng và giao hàng cho bạn trong thời gian sớm nhất</span>
                                     @elseif($item->status == 2)
                                         <span>Đơn hàng của bạn đang được giao</span>
                                     @else

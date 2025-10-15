@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="breadcrumb-content">
-                            <h2 class="title">Reset Password</h2>
+                            <h2 class="title">Đặt lại mật khẩu</h2>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
@@ -32,25 +32,25 @@
                         <div class="">
                             <div class="contact-content">
                                 <div class="section-title mb-15">
-                                    <span class="sub-title">Reset Password!</span>
+                                    <span class="sub-title">Đặt Lại Mật Khẩu</span>
                                 </div>
                                 <form action="" method="POST">
                                     @csrf
                                     <div class="contact-form-wrap">
                                         <div class="form-grp">
-                                            <input name="password" type="password" placeholder="Your New Password *" value="{{ old('password') }}">
+                                            <input name="password" type="password" placeholder="Mật Khẩu Mới Của Bạn *" value="{{ old('password') }}">
                                         </div>
                                         @error('password')
                                             <div class="error-message">{{ $message }}</div>
                                         @enderror
 
                                         <div class="form-grp">
-                                            <input name="confirm_password" type="password" placeholder="Your New Confirm Password *">
+                                            <input name="confirm_password" type="password" placeholder="Xác Nhận Mật Khẩu Mới Của Bạn *">
                                         </div>
                                         @error('confirm_password')
                                             <div class="error-message">{{ $message }}</div>
                                         @enderror
-                                        <button type="submit">Reset Your Password</button>
+                                        <button type="submit">Đặt Lại Mật Khẩu Của Bạn</button>
                                     </div>
                                 </form>
                                 <p class="ajax-response mb-0"></p>
