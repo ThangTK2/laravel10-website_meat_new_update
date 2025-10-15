@@ -43,17 +43,6 @@
 
                                         </div>
                                     </div>
-                                    <!-- <div class="col-md-6">
-                                        <div class="shop-ordering">
-                                            <select name="orderby" class="orderby">
-                                                <option value="Default sorting">Sort by Top Rating</option>
-                                                <option value="Sort by popularity">Sort by popularity</option>
-                                                <option value="Sort by average rating">Sort by average rating</option>
-                                                <option value="Sort by latest">Sort by latest</option>
-                                                <option value="Sort by latest">Sort by latest</option>
-                                            </select>
-                                        </div>
-                                    </div> -->
                                 </div>
                             </div>
                             <div class="shop-item-wrap">
@@ -62,7 +51,7 @@
                                     <div class="col-xl-4 col-md-6">
                                         <div class="product-item-three inner-product-item">
                                             <div class="product-thumb-three">
-                                                <a href="shop-details.html"><img src="uploads/product/{{ $item->image }}" alt="Image"></a>
+                                                <a href="{{ route('home.product', $item->id) }}"><img src="uploads/product/{{ $item->image }}" alt="Image"></a>
                                                 <span class="batch">Mới<i class="fas fa-star"></i></span>
                                             </div>
                                             <div class="product-content-three">
@@ -133,10 +122,10 @@
                                     <div class="latest-products-wrap">
                                         <div class="lp-item">
                                             <div class="lp-thumb">
-                                                <a href="shop-details.html"><img src="uploads/product/{{ $item->image }}" alt="Image"></a>
+                                                <a href="{{ route('home.product', $item->id) }}"><img src="uploads/product/{{ $item->image }}" alt="Image"></a>
                                             </div>
                                             <div class="lp-content">
-                                                <h4 class="title"><a href="shop-details.html">{{ $item->name }}</a></h4>
+                                                <h4 class="title"><a href="{{ route('home.product', $item->id) }}">{{ $item->name }}</a></h4>
                                                 <div style="display: flex; align-items: center; justify-content: center;">
                                                     @if ($item->sale_price > 0)
                                                         <div style="color: #7F6F6C; padding-right: 8px"><span><s>{{ number_format($item->price) }} đ</s></span></div>
@@ -163,31 +152,35 @@
 @endsection
 
 @section('js')
-<script>
-$(function() {
-    // Giá trị min/max hiện tại (nếu có lọc thì lấy, nếu không thì mặc định)
-    let min = parseInt("{{ request('min_price', 0) }}");
-    let max = parseInt("{{ request('max_price', 1000000) }}");
+    <script>
+        $(document).ready(function () {
+            let min = parseInt("{{ request('min_price', 0) }}");
+            let max = parseInt("{{ request('max_price', 1000000) }}");
 
-    // Slider jQuery UI
-    $("#slider-range").slider({
-        range: true,
-        min: 0,
-        max: 1000000,
-        step: 10000, // bước nhảy 10.000đ
-        values: [min, max],
-        slide: function(event, ui) {
-            $("#amount").val(ui.values[0].toLocaleString('vi-VN') + " đ - " + ui.values[1].toLocaleString('vi-VN') + " đ");
-            $("#min_price").val(ui.values[0]);
-            $("#max_price").val(ui.values[1]);
-        }
-    });
-
-    // Hiển thị giá mặc định khi load trang
-    $("#amount").val(
-        $("#slider-range").slider("values", 0).toLocaleString('vi-VN') + " đ - " +
-        $("#slider-range").slider("values", 1).toLocaleString('vi-VN') + " đ"
-    );
-});
-</script>
+            // Slider jQuery UI
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 1000000,
+                step: 10000, // step 10.000đ
+                values: [min, max],
+                slide: function (event, ui) {
+                    $("#amount").val(
+                        ui.values[0].toLocaleString("vi-VN") +
+                            " đ - " +
+                            ui.values[1].toLocaleString("vi-VN") +
+                            " đ"
+                    );
+                    $("#min_price").val(ui.values[0]);
+                    $("#max_price").val(ui.values[1]);
+                },
+            });
+            $("#amount").val(
+                $("#slider-range").slider("values", 0).toLocaleString("vi-VN") +
+                    " đ - " +
+                    $("#slider-range").slider("values", 1).toLocaleString("vi-VN") +
+                    " đ"
+            );
+        });
+    </script>
 @endsection
