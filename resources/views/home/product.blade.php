@@ -12,7 +12,7 @@
                             <h2 class="title">{{ $product->name }}</h2>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Trang chủ</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">{{ $product->name }}</li>
                                 </ol>
                             </nav>
@@ -55,13 +55,22 @@
                     <div class="col-lg-6">
                         <div class="shop-details-content">
                             <h2 class="title">{{ $product->name }}</h2>
-                            <h3 class="price"> <u style="text-decoration: line-through; padding-right: 8px">{{ number_format($product->price) }} đ</u> / {{ number_format($product->sale_price) }} đ</h3>
+                            <h3 class="price" id="product-price">
+                                @if($product->sale_price > 0)
+                                    <u style="text-decoration: line-through; padding-right: 8px">
+                                        {{ number_format($product->price) }} đ
+                                    </u> / {{ number_format($product->sale_price) }} đ
+                                @else
+                                    {{ number_format($product->price) }} đ
+                                @endif
+                            </h3>
+
                             <div class="product-count-wrap">
-                                <span class="title">Hurry Up! Sale ends in:</span>
-                                <div class="coming-time" data-countdown="2024/4/20"></div>
+                                <span class="title">Nhanh lên! Khuyến mãi kết thúc :</span>
+                                <div class="coming-time" data-countdown="{{ date('Y/m/d H:i:s', strtotime($product->sale_end_date)) }}"></div>
                             </div>
                             <p>Thịt cung cấp thịt tươi có hình dáng đẹp và thịt hữu cơ là động vật tốt.</p>
-                            {{-- <div class="shop-details-qty">
+                            <!-- <div class="shop-details-qty">
                                 <span class="title">Quantity :</span>
                                 <div class="shop-details-qty-inner">
                                     <form action="#">
@@ -71,7 +80,7 @@
                                     </form>
                                     <button class="purchase-btn">Mua</button>
                                 </div>
-                            </div> --}}
+                            </div>  -->
                             @if (auth('cus')->check())
                                 <a href="{{ route('cart.add', $product->id) }}" class="buy-btn">MUA ngay</a>
                             @else
@@ -192,12 +201,50 @@
 @endsection
 
 @section('js')
-    <script>
-        $('.thumb-img').click(function(e) {
-            e.preventDefault();
-            var productPhotos = $(this).attr('src');
-            $('#big-img').attr('src', productPhotos);
+<script>
+$(document).ready(function() {
+    $('.thumb-img').click(function(e) {
+        e.preventDefault();
+        var productPhotos = $(this).attr('src');
+        $('#big-img').attr('src', productPhotos);
+    });
+
+    $('.coming-time').each(function() {
+        var $this = $(this);
+        var finalDate = $(this).data('countdown');
+
+        $this.countdown(finalDate, function(event) {
+            $(this).html(event.strftime(
+                '<span>%D <small>Days</small></span> ' +
+                '<span>%H <small>Hours</small></span> ' +
+                '<span>%M <small>Minutes</small></span> ' +
+                '<span>%S <small>Seconds</small></span>'
+            ));
         })
-    </script>
+        .on('finish.countdown', function() {
+            // 1️⃣ Đổi giao diện về giá gốc
+            $('#product-price').text('{{ number_format($product->price) }} đ');
+            $(this).html('<span>Khuyến mãi đã kết thúc!</span>');
+
+            // 2️⃣ Gửi AJAX về server để cập nhật DB
+            $.ajax({
+                url: "{{ route('product.sale.expire', $product->id) }}",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function() {
+                    console.log("Sale đã hết hạn và đã cập nhật trong database.");
+                },
+                error: function() {
+                    console.log("Lỗi khi cập nhật backend.");
+                }
+            });
+        });
+    });
+});
+</script>
 @endsection
-f
+
+
+

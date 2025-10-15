@@ -40,6 +40,7 @@ class CheckoutController extends Controller
         if($order = Order::create($data)){
             $token = \Str::random(30);
 
+            $data1 = []; //tạo mảng rỗng để lưu chi tiết đơn hàng
             foreach($auth->carts as $cart){   //carts: bên Customer.js
                 $data1[] = [
                     'order_id' => $order->id,

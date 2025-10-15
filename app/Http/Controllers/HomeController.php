@@ -6,6 +6,7 @@ use App\Models\Banner;
 use App\Models\Favorite;
 use App\Models\Category;
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -84,12 +85,43 @@ class HomeController extends Controller
         return view('home.product_all', compact('product_all', 'new_products'));
     }
 
-    public function product(Product $product)
-    { 
-        $products = Product::where('category_id', $product->category_id)->limit(12)->get(); //sản phẩm liên quan(related)
-        $feature_products = Product::inRandomOrder()->limit(4)->get();
-        return view('home.product', compact('product', 'products', 'feature_products'));
+    // public function product(Product $product)
+    // { 
+    //     $products = Product::where('category_id', $product->category_id)->limit(12)->get(); //sản phẩm liên quan(related)
+    //     $feature_products = Product::inRandomOrder()->limit(4)->get();
+    //     return view('home.product', compact('product', 'products', 'feature_products'));
+    // }
+
+public function product(Product $product)
+{
+    $now = Carbon::now();
+
+    // Kiểm tra khi load trang
+    if ($product->sale_price > 0 && $product->sale_end_date && Carbon::parse($product->sale_end_date)->isPast()) {
+        $product->sale_price = 0;
+        $product->sale_end_date = null;
+        $product->save();
     }
+
+    $feature_products = Product::inRandomOrder()->limit(4)->get();
+
+    return view('home.product', compact('product', 'feature_products'));
+}
+
+public function expireSale($id)
+{
+    $product = Product::find($id);
+
+    if ($product && $product->sale_price > 0) {
+        // Reset khuyến mãi
+        $product->sale_price = 0;
+        $product->sale_end_date = null;
+        $product->save();
+    }
+
+    return response()->json(['success' => true]);
+}
+
 
     public function favorite($product_id)
     {   //$product_id: là tham số route trên đường dẫn bên web.php ta đặt tên lại product_id

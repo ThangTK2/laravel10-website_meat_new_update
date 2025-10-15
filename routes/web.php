@@ -34,7 +34,8 @@ Route::get('/category/{cat}', [HomeController::class, 'category'])->name('home.c
 Route::get('/product/{product}', [HomeController::class, 'product'])->name('home.product');
 Route::get('/favorite/{product}', [HomeController::class, 'favorite'])->name('home.favorite');
 
-
+// AJAX - Xử lý khi khuyến mãi hết hạn trên trang chi tiết sản phẩm 
+Route::post('/product/{id}/expire-sale', [HomeController::class, 'expireSale'])->name('product.sale.expire');
 
 Route::group(['prefix' => '/account'], function () {
     Route::get('/login', [AccountController::class, 'login'])->name('account.login');

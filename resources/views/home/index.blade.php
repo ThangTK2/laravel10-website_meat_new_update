@@ -15,7 +15,7 @@
                             <div class="banner-content">
                                 <h1 class="title wow fadeInUp" data-wow-delay=".2s">{{ $topBanner->name }}</h1>
                                 <span class="sub-title-1 wow fadeInUp" data-wow-delay=".4s">Cửa hàng thịt tươi sạch</span>
-                                <a href="{{ $topBanner->link }}" class="btn wow fadeInUp" data-wow-delay=".6s">Mua ngay</a>
+                                <a href="{{ route('home.product_all') }}" class="btn wow fadeInUp" data-wow-delay=".6s">Mua ngay</a>
                             </div>
                             <div class="banner-img text-center wow fadeInUp" data-wow-delay=".8s">
                                 <img src="uploads/banner/banner_img.png" alt="">
@@ -40,7 +40,7 @@
                             <div class="col-lg-6">
                                 <div class="features-item tg-motion-effects">
                                     <div class="features-content">
-                                        <span style="padding-bottom: 8px"> {{ $item->cat->name }}</span>
+                                        <a style="text-transform: uppercase;font-weight: 700;" href="{{ route('home.product', $item->id) }}"><span style="padding-bottom: 8px"> {{ $item->cat->name }}</span></a>
                                         <h4 class="title"><a href="{{ route('home.product', $item->id) }}">{{ $item->name }}</a></h4>
                                         <div style="display: flex; align-items: center;">
                                             @if ($item->sale_price > 0) <!-- nếu có khuyến mãi -->
@@ -51,7 +51,7 @@
                                             @endif
                                         </div>
 
-                                        {{-- auth('cus') bên config.auth  ||  favorited: bên Product.php line 30 --}}
+                                        <!-- auth('cus') bên config.auth  ||  favorited: bên Product.php -->
                                         <div class="favorite-action" style="display: flex; align-items: center;">
                                             @if (auth('cus')->check())
                                                 @if ($item->favorited)
@@ -67,7 +67,7 @@
                                         </div>
                                     </div>
                                     <div class="features-img">
-                                        <img src="uploads/product/{{ $item->image }}" alt="">
+                                        <a href="{{ route('home.product', $item->id) }}"><img src="uploads/product/{{ $item->image }}" alt="Image"> </a>
                                         <div class="features-shape">
                                             <img src="uploads/images/features_shape.png" alt="" class="tg-motion-effects4">
                                         </div>

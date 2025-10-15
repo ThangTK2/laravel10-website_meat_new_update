@@ -40,26 +40,39 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($carts as $item) <!--carts: bên AppServiceProvider.php || prod: bên function Cart.php -->
+                        @foreach ($carts as $item)
                             <tr>
-                                <td scope="row">{{ $loop->index + 1 }}</td>
-                                <td>{{ $item->prod->name }}</td>
-                                <td>{{ number_format($item->price) }} đ</td>
+                                <td scope="row">{{ $loop->iteration }}</td>
+                                <td>{{ $item->prod->name ?? 'Sản phẩm không tồn tại' }}</td>
+                                <!-- ->isFuture() trong Carbon dùng để kiểm tra xem một thời điểm có nằm trong tương lai hay không -->
+                                <td>
+                                    @if ($item->prod && $item->prod->sale_price > 0 && $item->prod->sale_end_date && \Carbon\Carbon::parse($item->prod->sale_end_date)->isFuture()) 
+                                        <u style="text-decoration: line-through; padding-right: 5px;">{{ number_format($item->prod->price) }} đ</u>
+                                        {{ number_format($item->prod->sale_price) }} đ
+                                    @else
+                                        {{ number_format($item->prod->price) }} đ
+                                    @endif
+                                </td>
                                 <td>
                                     <form action="{{ route('cart.update', $item->product_id) }}" method="get">
                                         <input type="number" min="1" name="quantity" value="{{ $item->quantity }}" style="width: 50px; text-align: center">
                                         <button><i class="fa fa-save"></i></button>
                                     </form>
                                 </td>
-                                <td><img src="uploads/product/{{ $item->prod->image }}" width="50" alt="Image"></td>
+                                <td>
+                                    @if ($item->prod)
+                                        <img src="{{ asset('uploads/product/' . $item->prod->image) }}" width="50" alt="{{ $item->prod->name }}">
+                                    @endif
+                                </td>
                                 <td>{{ $item->created_at->format('d/m/Y') }}</td>
                                 <td>
-                                    <span><a title="Remove a product" onclick="return confirm('Do you want to remove a product from your cart?')" href="{{ route('cart.delete', $item->product_id) }}"><i class="fas fa-trash"></i></a></span>
+                                    <a title="Xóa sản phẩm" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?')" href="{{ route('cart.delete', $item->product_id) }}">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody>
-                    {{-- <tr>{{  }}</tr> --}}
+                        </tbody>
                 </table>
                 <br>
                 <div class="text-center">

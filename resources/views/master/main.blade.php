@@ -142,7 +142,7 @@
                                                     <span>{{ $carts->sum('quantity') }}</span>
                                                 </a>
                                             </li>
-                                            <li class="header-btn"><a href="tel:0123456789" class="btn">0 929 029 035</a></li>
+                                            <li class="header-btn"><a href="{{ route('home.product_all') }}" class="btn">Mua ngay</a></li>
                                         </ul>
                                     </div>
                                 </nav>
@@ -223,15 +223,13 @@
                                         </ul>
                                     </div>
                                 </li>
-                                <li class="order-lg-3">
-                                    <div class="footer-newsletter">
-                                        <h4 class="title">BẢN TIN CỦA CHÚNG TÔI</h4>
-                                        <form action="#">
-                                            <input type="email" placeholder="Email của bạn...">
-                                            <button type="submit">subscribe</button>
-                                        </form>
+                              <li class="order-lg-3">
+                                    <div class="thang footer-info">
+                                        <h4 class="thang-title">Sứ mệnh của chúng tôi</h4>
+                                        <p class="thang-p">“Mang đến những sản phẩm chất lượng và trải nghiệm tốt nhất cho khách hàng.”</p>
                                     </div>
                                 </li>
+
                             </ul>
                         </div>
                     </div>
@@ -335,7 +333,6 @@
         <script src="assets/js/ajax-form.js"></script>
         <script src="assets/js/wow.min.js"></script>
         <script src="assets/js/main.js"></script>
-
         @yield('js')
     </body>
 </html>
