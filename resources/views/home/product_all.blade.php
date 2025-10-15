@@ -39,7 +39,7 @@
                                                 $end = $start + $product_all->count() - 1;
                                             @endphp
 
-                                            <p>Showing {{ $start }}–{{ $end }} of {{ $product_all->total() }} results</p>
+                                            <p>Hiển thị {{ $start }}–{{ $end }} trong số {{ $product_all->total() }} kết quả</p>
 
                                         </div>
                                     </div>

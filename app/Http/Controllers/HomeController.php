@@ -54,10 +54,18 @@ class HomeController extends Controller
         return view('home.page');
     }
 
-    public function category(Category $cat)
-    {  
-        $products = $cat->products()->paginate(9);
+    public function category(Category $cat, Request $request)
+    {
+        $productsQuery = $cat->products();
+
+        // Lọc theo sale_price nếu có
+        if ($request->filled('min_price') && $request->filled('max_price')) {
+            $productsQuery->whereBetween('sale_price', [$request->min_price, $request->max_price]);
+        }
+
+        $products = $productsQuery->paginate(9);
         $new_products = Product::orderBy('created_at', 'desc')->limit(3)->get();
+
         return view('home.category', compact('cat', 'products', 'new_products'));
     }
 
